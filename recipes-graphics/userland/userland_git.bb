@@ -15,7 +15,10 @@ SRCBRANCH = "master"
 SRCFORK = "raspberrypi"
 SRCREV = "85441185e653347e6b3c2bbc7494f5e29a6ca4a2"
 
-SRC_URI = "git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
+SRC_URI = " \
+    git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
+    file://egl.pc.in \
+    file://glesv2.pc.in \
           "
 S = "${WORKDIR}/git"
 
@@ -26,15 +29,32 @@ EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS='-Wl,--no-a
 # The compiled binaries don't provide sonames.
 SOLIBS = "${SOLIBSDEV}"
 
+# Most packages are happy wir mesa > 9.0.0
+MESA_VERSION = "9.0.0"
+
 do_install_append() {
     mkdir -p ${D}/${prefix}
     mv ${D}/opt/vc/* ${D}/${prefix}
     rm -rf ${D}/opt
+
+    # pkgconfig
+    install -d ${D}${libdir}/pkgconfig
+    for pkgconfig_name in egl glesv2 ; do
+        sed \
+            -e 's:%PREFIX%:${prefix}:g' \
+            -e 's:%LIBDIR%:${libdir}:g' \
+            -e 's:%INCDIR%:${includedir}:g' \
+            -e 's:%VERSION%:${MESA_VERSION}:g' \
+             < "${WORKDIR}/${pkgconfig_name}.pc.in" > "${D}/${libdir}/pkgconfig/${pkgconfig_name}.pc"
+    done
 }
 
 FILES_${PN} += "${libdir}/*${SOLIBS}"
-FILES_${PN}-dev = "${includedir} \
-                   ${prefix}/src"
+FILES_${PN}-dev = " \
+    ${includedir} \
+    ${prefix}/src \
+    ${libdir}/pkgconfig \
+"
 FILES_${PN}-doc += "${datadir}/install"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"

@@ -1,0 +1,12 @@
+prefix=%PREFIX%
+exec_prefix=${prefix}
+libdir=%LIBDIR%
+includedir=%INCDIR%
+
+Name: glesv2
+Description: Userland GLESv2 library
+Requires.private: 
+Version: %VERSION%
+Libs: -L${libdir} -lGLESv2
+Libs.private: 
+Cflags: -I${includedir}
