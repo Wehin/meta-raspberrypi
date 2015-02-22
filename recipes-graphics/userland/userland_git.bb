@@ -17,9 +17,10 @@ SRCREV = "85441185e653347e6b3c2bbc7494f5e29a6ca4a2"
 
 SRC_URI = " \
     git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
+    file://0001-vcos-headers-extend-paths-to-give-other-packages-bet.patch \
     file://egl.pc.in \
     file://glesv2.pc.in \
-          "
+"
 S = "${WORKDIR}/git"
 
 inherit cmake

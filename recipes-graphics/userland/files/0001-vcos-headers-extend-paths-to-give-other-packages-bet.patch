@@ -1,0 +1,422 @@
+From 4a66914d7982dcf81ed5806354563d97ffb89375 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andreas=20M=C3=BCller?= <schnitzeltony@googlemail.com>
+Date: Sun, 22 Feb 2015 14:44:11 +0100
+Subject: [PATCH] vcos headers: extend paths to give other packages better
+ chance to find them
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
+---
+ interface/vcos/pthreads/vcos_futex_mutex.h | 2 +-
+ interface/vcos/pthreads/vcos_platform.h    | 2 +-
+ interface/vcos/vcos.h                      | 2 +-
+ interface/vcos/vcos_atomic_flags.h         | 2 +-
+ interface/vcos/vcos_blockpool.h            | 2 +-
+ interface/vcos/vcos_cfg.h                  | 2 +-
+ interface/vcos/vcos_dlfcn.h                | 2 +-
+ interface/vcos/vcos_event.h                | 2 +-
+ interface/vcos/vcos_event_flags.h          | 2 +-
+ interface/vcos/vcos_init.h                 | 2 +-
+ interface/vcos/vcos_isr.h                  | 2 +-
+ interface/vcos/vcos_legacy_isr.h           | 2 +-
+ interface/vcos/vcos_logging.h              | 2 +-
+ interface/vcos/vcos_lowlevel_thread.h      | 2 +-
+ interface/vcos/vcos_mem.h                  | 2 +-
+ interface/vcos/vcos_mempool.h              | 2 +-
+ interface/vcos/vcos_msgqueue.h             | 2 +-
+ interface/vcos/vcos_mutex.h                | 2 +-
+ interface/vcos/vcos_named_semaphore.h      | 2 +-
+ interface/vcos/vcos_once.h                 | 2 +-
+ interface/vcos/vcos_queue.h                | 2 +-
+ interface/vcos/vcos_quickslow_mutex.h      | 2 +-
+ interface/vcos/vcos_reentrant_mutex.h      | 2 +-
+ interface/vcos/vcos_semaphore.h            | 2 +-
+ interface/vcos/vcos_string.h               | 2 +-
+ interface/vcos/vcos_thread.h               | 2 +-
+ interface/vcos/vcos_timer.h                | 2 +-
+ interface/vcos/vcos_tls.h                  | 2 +-
+ interface/vcos/vcos_types.h                | 2 +-
+ 29 files changed, 29 insertions(+), 29 deletions(-)
+
+diff --git a/interface/vcos/pthreads/vcos_futex_mutex.h b/interface/vcos/pthreads/vcos_futex_mutex.h
+index 3c44720..c16742a 100644
+--- a/interface/vcos/pthreads/vcos_futex_mutex.h
++++ b/interface/vcos/pthreads/vcos_futex_mutex.h
+@@ -38,7 +38,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ typedef struct VCOS_FUTEX_T
+ {
+diff --git a/interface/vcos/pthreads/vcos_platform.h b/interface/vcos/pthreads/vcos_platform.h
+index 2095e25..9e9b234 100755
+--- a/interface/vcos/pthreads/vcos_platform.h
++++ b/interface/vcos/pthreads/vcos_platform.h
+@@ -109,7 +109,7 @@ typedef struct VCOS_LLTHREAD_T
+ #ifndef VCOS_USE_VCOS_FUTEX
+ typedef pthread_mutex_t       VCOS_MUTEX_T;
+ #else
+-#include "vcos_futex_mutex.h"
++#include "interface/vcos/pthreads/vcos_futex_mutex.h"
+ #endif /* VCOS_USE_VCOS_FUTEX */
+ 
+ typedef struct
+diff --git a/interface/vcos/vcos.h b/interface/vcos/vcos.h
+index fae9cbc..268e53a 100644
+--- a/interface/vcos/vcos.h
++++ b/interface/vcos/vcos.h
+@@ -113,7 +113,7 @@ VideoCore OS Abstraction Layer - public header file
+ 
+ #include "interface/vcos/vcos_assert.h"
+ #include "vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ #ifndef VCOS_INIT_H
+ #include "interface/vcos/vcos_init.h"
+diff --git a/interface/vcos/vcos_atomic_flags.h b/interface/vcos/vcos_atomic_flags.h
+index 62bbf38..ec14b42 100644
+--- a/interface/vcos/vcos_atomic_flags.h
++++ b/interface/vcos/vcos_atomic_flags.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /**
+  * \file vcos_atomic_flags.h
+diff --git a/interface/vcos/vcos_blockpool.h b/interface/vcos/vcos_blockpool.h
+index 0f18a8e..a252e83 100644
+--- a/interface/vcos/vcos_blockpool.h
++++ b/interface/vcos/vcos_blockpool.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /** \file
+   *
+diff --git a/interface/vcos/vcos_cfg.h b/interface/vcos/vcos_cfg.h
+index 5ae186d..996505b 100644
+--- a/interface/vcos/vcos_cfg.h
++++ b/interface/vcos/vcos_cfg.h
+@@ -33,7 +33,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ typedef struct opaque_vcos_cfg_buf_t    *VCOS_CFG_BUF_T;
+ typedef struct opaque_vcos_cfg_entry_t  *VCOS_CFG_ENTRY_T;
+diff --git a/interface/vcos/vcos_dlfcn.h b/interface/vcos/vcos_dlfcn.h
+index f017a9e..5cd2da0 100644
+--- a/interface/vcos/vcos_dlfcn.h
++++ b/interface/vcos/vcos_dlfcn.h
+@@ -33,7 +33,7 @@ VCOS - abstraction over dynamic library opening
+ #define VCOS_DLFCN_H
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ #ifdef __cplusplus
+ extern "C" {
+diff --git a/interface/vcos/vcos_event.h b/interface/vcos/vcos_event.h
+index 3aa9078..d529d8f 100644
+--- a/interface/vcos/vcos_event.h
++++ b/interface/vcos/vcos_event.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /** 
+   * \file
+diff --git a/interface/vcos/vcos_event_flags.h b/interface/vcos/vcos_event_flags.h
+index f5b82be..9a4368a 100644
+--- a/interface/vcos/vcos_event_flags.h
++++ b/interface/vcos/vcos_event_flags.h
+@@ -38,7 +38,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ #define VCOS_EVENT_FLAGS_SUSPEND    VCOS_SUSPEND
+ #define VCOS_EVENT_FLAGS_NO_SUSPEND VCOS_NO_SUSPEND
+diff --git a/interface/vcos/vcos_init.h b/interface/vcos/vcos_init.h
+index aa06f89..b47ca80 100644
+--- a/interface/vcos/vcos_init.h
++++ b/interface/vcos/vcos_init.h
+@@ -31,7 +31,7 @@ VideoCore OS Abstraction Layer - initialization routines
+ 
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ #ifdef __cplusplus
+ extern "C" {
+diff --git a/interface/vcos/vcos_isr.h b/interface/vcos/vcos_isr.h
+index 0c0d5e6..1e43868 100644
+--- a/interface/vcos/vcos_isr.h
++++ b/interface/vcos/vcos_isr.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /**
+   * \file vcos_isr.h
+diff --git a/interface/vcos/vcos_legacy_isr.h b/interface/vcos/vcos_legacy_isr.h
+index b77117a..13eba29 100644
+--- a/interface/vcos/vcos_legacy_isr.h
++++ b/interface/vcos/vcos_legacy_isr.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /** \file vcos_legacy_isr.h
+   *
+diff --git a/interface/vcos/vcos_logging.h b/interface/vcos/vcos_logging.h
+index c2ae322..c9dc88f 100644
+--- a/interface/vcos/vcos_logging.h
++++ b/interface/vcos/vcos_logging.h
+@@ -39,7 +39,7 @@ extern "C" {
+ #include <stdarg.h>
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ #include "vcos_logging_control.h"
+ 
+ /**
+diff --git a/interface/vcos/vcos_lowlevel_thread.h b/interface/vcos/vcos_lowlevel_thread.h
+index ee181db..ee6ef52 100644
+--- a/interface/vcos/vcos_lowlevel_thread.h
++++ b/interface/vcos/vcos_lowlevel_thread.h
+@@ -38,7 +38,7 @@ extern "C" {
+ 
+ #include "interface/vcos/vcos_types.h"
+ #ifndef VCOS_PLATFORM_H
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ #endif
+ 
+ /**
+diff --git a/interface/vcos/vcos_mem.h b/interface/vcos/vcos_mem.h
+index f6e325a..4bcaad1 100644
+--- a/interface/vcos/vcos_mem.h
++++ b/interface/vcos/vcos_mem.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /** \file
+   *
+diff --git a/interface/vcos/vcos_mempool.h b/interface/vcos/vcos_mempool.h
+index d61d5ee..b80f682 100644
+--- a/interface/vcos/vcos_mempool.h
++++ b/interface/vcos/vcos_mempool.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /** \file
+   *
+diff --git a/interface/vcos/vcos_msgqueue.h b/interface/vcos/vcos_msgqueue.h
+index 02cd5e8..657b1c6 100644
+--- a/interface/vcos/vcos_msgqueue.h
++++ b/interface/vcos/vcos_msgqueue.h
+@@ -44,7 +44,7 @@ extern "C" {
+ #endif
+ 
+ #include "vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ #include "vcos_blockpool.h"
+ 
+ /**
+diff --git a/interface/vcos/vcos_mutex.h b/interface/vcos/vcos_mutex.h
+index 0e236ff..e24930f 100644
+--- a/interface/vcos/vcos_mutex.h
++++ b/interface/vcos/vcos_mutex.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /**
+  * \file vcos_mutex.h
+diff --git a/interface/vcos/vcos_named_semaphore.h b/interface/vcos/vcos_named_semaphore.h
+index 2ebdfd1..89f0208 100644
+--- a/interface/vcos/vcos_named_semaphore.h
++++ b/interface/vcos/vcos_named_semaphore.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /**
+  * \file
+diff --git a/interface/vcos/vcos_once.h b/interface/vcos/vcos_once.h
+index 84bae63..a68f3f1 100644
+--- a/interface/vcos/vcos_once.h
++++ b/interface/vcos/vcos_once.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /**
+  * \file vcos_once.h
+diff --git a/interface/vcos/vcos_queue.h b/interface/vcos/vcos_queue.h
+index 687375c..636e7ee 100644
+--- a/interface/vcos/vcos_queue.h
++++ b/interface/vcos/vcos_queue.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /** \file vcos_queue.h
+   *
+diff --git a/interface/vcos/vcos_quickslow_mutex.h b/interface/vcos/vcos_quickslow_mutex.h
+index 44fd003..e4dc450 100644
+--- a/interface/vcos/vcos_quickslow_mutex.h
++++ b/interface/vcos/vcos_quickslow_mutex.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /**
+  * \file vcos_quickslow_mutex.h
+diff --git a/interface/vcos/vcos_reentrant_mutex.h b/interface/vcos/vcos_reentrant_mutex.h
+index c088bd1..2da3f5e 100644
+--- a/interface/vcos/vcos_reentrant_mutex.h
++++ b/interface/vcos/vcos_reentrant_mutex.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /**
+  * \file
+diff --git a/interface/vcos/vcos_semaphore.h b/interface/vcos/vcos_semaphore.h
+index d740215..6090137 100644
+--- a/interface/vcos/vcos_semaphore.h
++++ b/interface/vcos/vcos_semaphore.h
+@@ -38,7 +38,7 @@ extern "C" {
+ 
+ #include "interface/vcos/vcos_types.h"
+ #ifndef VCOS_PLATFORM_H
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ #endif
+ 
+ /**
+diff --git a/interface/vcos/vcos_string.h b/interface/vcos/vcos_string.h
+index d4d0bb0..4f9dc5b 100644
+--- a/interface/vcos/vcos_string.h
++++ b/interface/vcos/vcos_string.h
+@@ -44,7 +44,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ #ifdef __KERNEL__
+ #include <linux/string.h>
+diff --git a/interface/vcos/vcos_thread.h b/interface/vcos/vcos_thread.h
+index 177ad8b..fccc7ca 100644
+--- a/interface/vcos/vcos_thread.h
++++ b/interface/vcos/vcos_thread.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ /**
+  * \file vcos_thread.h
+diff --git a/interface/vcos/vcos_timer.h b/interface/vcos/vcos_timer.h
+index bdfa657..79f0a45 100644
+--- a/interface/vcos/vcos_timer.h
++++ b/interface/vcos/vcos_timer.h
+@@ -38,7 +38,7 @@ extern "C" {
+ 
+ #include "interface/vcos/vcos_types.h"
+ #ifndef VCOS_PLATFORM_H
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ #endif
+ 
+ /** \file vcos_timer.h
+diff --git a/interface/vcos/vcos_tls.h b/interface/vcos/vcos_tls.h
+index c5c8033..d6a37a7 100644
+--- a/interface/vcos/vcos_tls.h
++++ b/interface/vcos/vcos_tls.h
+@@ -37,7 +37,7 @@ extern "C" {
+ #endif
+ 
+ #include "interface/vcos/vcos_types.h"
+-#include "vcos_platform.h"
++#include "interface/vcos/pthreads/vcos_platform.h"
+ 
+ 
+ /** Create a new thread local storage data key visible to all threads in
+diff --git a/interface/vcos/vcos_types.h b/interface/vcos/vcos_types.h
+index 6feb4d2..e0794d2 100644
+--- a/interface/vcos/vcos_types.h
++++ b/interface/vcos/vcos_types.h
+@@ -35,7 +35,7 @@ VideoCore OS Abstraction Layer - basic types
+ #define VCOS_VERSION   1
+ 
+ #include <stddef.h>
+-#include "vcos_platform_types.h"
++#include "interface/vcos/pthreads/vcos_platform_types.h"
+ #include "interface/vcos/vcos_attr.h"
+ 
+ #if !defined(VCOSPRE_) || !defined(VCOSPOST_)
+-- 
+1.9.3
+
