@@ -9,4 +9,4 @@ Requires.private:
 Version: %VERSION%
 Libs.private: 
 Libs: -L${libdir} -lEGL
-Cflags: -I${includedir} -I${includedir}/interface/vcos/pthreads
+Cflags: -I${includedir}

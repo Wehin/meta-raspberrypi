@@ -17,6 +17,7 @@ SRCREV = "bb5b28fc534f4f10c42c1c245673b26217aa03df"
 
 SRC_URI = " \
     git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
+    file://0001-vcos-headers-extend-paths-to-give-other-packages-bet.patch \
     file://egl.pc.in \
     file://glesv2.pc.in \
 "
