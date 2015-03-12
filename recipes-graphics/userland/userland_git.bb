@@ -13,7 +13,7 @@ COMPATIBLE_MACHINE = "raspberrypi"
 
 SRCBRANCH = "master"
 SRCFORK = "raspberrypi"
-SRCREV = "3b81b91c18ff19f97033e146a9f3262ca631f0e9"
+SRCREV = "bb5b28fc534f4f10c42c1c245673b26217aa03df"
 
 SRC_URI = " \
     git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
@@ -25,7 +25,6 @@ S = "${WORKDIR}/git"
 inherit cmake
 
 EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS='-Wl,--no-as-needed'"
-CFLAGS_append = " -fPIC"
 
 # The compiled binaries don't provide sonames.
 SOLIBS = "${SOLIBSDEV}"
