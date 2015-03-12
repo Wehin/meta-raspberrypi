@@ -1,0 +1,12 @@
+prefix=%PREFIX%
+exec_prefix=${prefix}
+libdir=%LIBDIR%
+includedir=%INCDIR%
+
+Name: egl
+Description: Userland EGL library
+Requires.private:
+Version: %VERSION%
+Libs.private: 
+Libs: -L${libdir} -lEGL
+Cflags: -I${includedir} -I${includedir}/interface/vcos/pthreads
