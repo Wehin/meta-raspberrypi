@@ -1,0 +1,38 @@
+From dc6d02c68956a1833bd30159d4e411f1515db66e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andreas=20M=C3=BCller?= <schnitzeltony@googlemail.com>
+Date: Wed, 18 Mar 2015 23:51:37 +0100
+Subject: [PATCH] start sound during boot by compiling SND_BCM2835 into kernel
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
+---
+ arch/arm/configs/bcm2709_defconfig | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/configs/bcm2709_defconfig b/arch/arm/configs/bcm2709_defconfig
+index b5bf4cb..426f2ed 100644
+--- a/arch/arm/configs/bcm2709_defconfig
++++ b/arch/arm/configs/bcm2709_defconfig
+@@ -765,7 +765,7 @@ CONFIG_LOGO=y
+ # CONFIG_LOGO_LINUX_MONO is not set
+ # CONFIG_LOGO_LINUX_VGA16 is not set
+ CONFIG_SOUND=y
+-CONFIG_SND=m
++CONFIG_SND=y
+ CONFIG_SND_SEQUENCER=m
+ CONFIG_SND_SEQ_DUMMY=m
+ CONFIG_SND_MIXER_OSS=m
+@@ -778,7 +778,7 @@ CONFIG_SND_VIRMIDI=m
+ CONFIG_SND_MTPAV=m
+ CONFIG_SND_SERIAL_U16550=m
+ CONFIG_SND_MPU401=m
+-CONFIG_SND_BCM2835=m
++CONFIG_SND_BCM2835=y
+ CONFIG_SND_USB_AUDIO=m
+ CONFIG_SND_USB_UA101=m
+ CONFIG_SND_USB_CAIAQ=m
+-- 
+1.9.3
+
